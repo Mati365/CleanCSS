@@ -2,7 +2,7 @@
 **CleanCSS** - tiny Semantic's style LESS library
 
 ## Examples of use
-![Screenshoot](/doc/screen/2.png?raw=true "Screen")
+![Screenshoot](/doc/1.png?raw=true "Screen")
 ```jade
 .col100
 	.message.info
