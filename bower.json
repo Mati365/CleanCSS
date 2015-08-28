@@ -1,0 +1,25 @@
+{
+  "name": "CleanCSS",
+  "version": "0.0.1",
+  "homepage": "https://github.com/Mati365/CleanCSS",
+  "authors": [
+    "mateusz <cziken58@gmail.com>"
+  ],
+  "description": "CleanCSS is tiny Semantic's style LESS library",
+  "main": "dist/cleancss.min.css",
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+    "less",
+    "semantic"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
