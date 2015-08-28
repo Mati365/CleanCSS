@@ -1,0 +1,30 @@
+{
+  "name": "CleanCSS",
+  "version": "0.0.1",
+  "description": "CleanCSS is tiny Semantic's style LESS library",
+  "main": "less/main.less",
+  "directories": {
+    "doc": "doc"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Mati365/CleanCSS"
+  },
+  "keywords": [
+    "css",
+    "less",
+    "cleancss"
+  ],
+  "author": "Mateusz Bagiński",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Mati365/CleanCSS/issues"
+  },
+  "devDependencies": {
+    "grunt": "^0.4.5",
+    "grunt-contrib-less": "^1.0.1"
+  }
+}

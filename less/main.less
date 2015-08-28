@@ -1,0 +1,34 @@
+@import "page";
+
+/** Aktywny link */
+.header, .active {
+  font-weight: bold;
+};
+.row.middle > * {
+  vertical-align: middle;
+};
+
+/** Panel z tytułem */
+.panel {
+  .head, .body {
+    padding: 5px;
+  };
+  .head:extend(.active .text-center) {};
+};
+
+/** Zawartość strony */
+.segment {
+  margin-left:  5px;
+  margin-right: 5px;
+};
+
+.frame {
+  border: 1px solid @divider;
+  cursor: pointer;
+};
+
+/** about w menu */
+span.about:extend(.pull-right) {
+  .text-right;
+  color:      @divider;
+};

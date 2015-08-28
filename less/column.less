@@ -1,0 +1,57 @@
+@import "util";
+
+/** dla wszystkich */
+* {
+  box-sizing: border-box;
+};
+
+/** Konwersja na inline */
+.inline { display: inline-block; };
+.block  { display: block; };
+.hidden { display: none;  };
+
+/** Do input'a dobry */
+.flex   {
+  display: flex;
+  &.middle {
+    align-items: baseline;
+  };
+};
+
+/** kolumny */
+@columns: 10;
+@spacing: 5px;
+.col:extend(.inline) {
+  vertical-align: top;
+  margin-bottom:  @spacing;
+  padding:        5px;
+  white-space:    normal;
+  .for(1, @columns+1); .-each(@proc) {
+    @val: `parseInt(100 / @{columns} * @{proc})`;
+    &@{val}:extend(.col) {
+      width: percentage(@val / 100);
+    };
+    &-offset@{val} {
+      margin-left: percentage(@val / 100) !important;
+    };
+  };
+};
+//div[class*='col'] > div[class*='col'] {
+//  &:first-child {
+//    padding-left: 0;
+//  };
+//  &:last-child {
+//    padding-right: 0;
+//  };
+//};
+.row {
+  margin: @spacing 0 @spacing 0;
+  width:  100%;
+};
+
+/** kontener na strone */
+@page_size: 1024px;
+.container {
+  width:  @page_size;
+  margin: 0 auto;
+};

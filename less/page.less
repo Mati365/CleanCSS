@@ -1,0 +1,307 @@
+@import "const";
+@import "column";
+
+/** Domyślne zaokrąglenie */
+@control_radius: 0;
+
+body {
+  font-family: 'Myriad Pro';
+  margin:      0;
+  padding-top: 20px;
+};
+
+/** Wyłączenie zaznaczania */
+.no-select {
+  -webkit-touch-callout: none;
+  -webkit-user-select:   none;
+  -moz-user-select:      none;
+  -ms-user-select:       none;
+  user-select:           none;
+};
+
+/** Nagłówki */
+h5, h4, h3, h2 {
+  margin-top:     0;
+  margin-bottom:  5px;
+};
+.sub-header {
+  font-weight:   bold;
+  &.inline       { margin-left: 5px; };
+  &:not(.inline) { margin-top:  5px; };
+};
+
+/** Kontrolki */
+* {
+  &:focus {
+    outline: 0;
+  };
+  &::selection {
+    background: @danger;
+    color:      white;
+  };
+};
+.control, .icon+input * {
+  padding: 4px 9px 4px 9px;
+};
+.control {
+  font-size:      14px;
+  border:         1px solid @info;
+  border-radius:  @control_radius;
+  vertical-align: middle;
+};
+input[type='text'], input[type='password'], button {
+  height: 32px;
+};
+
+/** Grupy */
+.form fieldset {
+  padding: 0;
+  margin:  0;
+  border:  0;
+};
+
+/** Ikony w textbox */
+@label_size: 32px; // z paddingiem
+.icon i:extend(.inline) {
+  &.right { right: 0; };
+  &.left  { left: 0;  };
+
+  position:    absolute;
+  height:      @label_size;
+  line-height: @label_size;
+};
+.labeled {
+  position: relative;
+
+  i, .label {
+    .text-center;
+    width:      26px;
+  };
+  &.right {
+    .label { right: 0; };
+    button, input, textarea { padding-right: @label_size; };
+  };
+  &.left {
+    .label { left: 0; };
+    button, input, textarea { padding-left: @label_size; }
+  };
+  i.right {
+    &+input, &+textarea { &:extend(.labeled.right input); }
+  };
+  i.left {
+    &+input, &+textarea { &:extend(.labeled.left input); }
+  };
+
+  input, button, textarea {
+    &:extend(.icon input);
+    width: 100%;
+    &+.label:extend(.icon i, &.right) {
+      .corner {
+        left:  0;
+        width: 100%;
+      };
+      &.star::after:extend(.corner) {
+        content: '*';
+      };
+      color:      black;
+      top:        0;
+    };
+  };
+  button+.label {
+    background: rgba(0, 0, 0, 0.1);
+    color:      white;
+  };
+};
+
+/** Linki */
+a {
+  color:           inherit;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  };
+};
+
+/** Textbox */
+input, textarea {
+  @focus: darken(@info, 10%);
+  box-shadow: none;
+
+  &:extend(.control);
+  &:focus        { border-color: @focus; };
+  &:focus+.label { background: @focus; };
+};
+
+/** Przycisk */
+button:extend(.control, .active) {
+  padding-left:  6px;
+  padding-right: 6px;
+  background:    rgba(255, 255, 255, 0.3);
+  border-color:  rgba(255, 255, 255, 0.2);
+  color:         rgba(0, 0, 0, 0.3);
+
+  .create(@name, @color, @text) {
+    &.@{name} {
+      background:    @color;
+      color:         @text;
+      border-color:  darken(@color, 4%);
+      &.active, &:not(.label):active {
+        background: darken(@color, 10%);
+      };
+    };
+  };
+  .create(danger, @danger, white);
+  .create(turquoise, @turquoise, white);
+  .create(default, white, black);
+  .create(green, @spring_green, white);
+  .create(blue, @sky_blue, white);
+};
+
+/** Grupy przycisków */
+.btn-group {
+  @selectors: ~'button, input';
+  //margin: 0 5px;
+  &:not(.horizontal) button:not(:last-of-type) {
+    border-right: 0;
+  };
+  &.horizontal button {
+    width: 100%;
+    &:not(:last-of-type) {
+      border-bottom: 0;
+    };
+  };
+};
+
+/** Lista */
+.clean-list {
+  list-style-type: none;
+  padding:         0;
+  margin:          0;
+};
+ul.input.list:extend(.clean-list) {  };
+
+.drop-menu {
+  cursor: pointer;
+  ul:extend(.clean-list) {
+    margin-left: 16px;
+    display:     none;
+  };
+  .active + ul {
+    display: block;
+  };
+  & > a.active:first-of-type ~ ul:extend(.clean-list) {
+    padding:    5px;
+    position:   absolute;
+    display:    block;
+    background: white;
+  };
+};
+
+/** Menu rozwijane */
+.label {
+  cursor:        default;
+  font-weight:   bold;
+};
+
+/** Tabele */
+table {
+  width:              100%;
+  border-collapse:    collapse;
+  border-spacing:     0;
+  table-layout:       fixed;
+
+  input[type='checkbox'] {
+    margin:  0;
+    padding: 0;
+    height:  auto;
+  };
+
+  /** Obramowanie */
+  &.dotted tr:not(:last-child) {
+    &:extend(.divider, .divider.vertical);
+  };
+  td, th {
+    .text-left;
+    input, button, .control {
+      padding: 4px;
+      width:   100%;
+    };
+  };
+};
+
+/** Podzielenie */
+.divider {
+  @type: 1px dotted #e9e9e9;
+  @margin: 5px;
+  &.vertical   {
+    border-bottom: @type;
+    padding:       @margin 0;
+    width:         100%;
+  };
+  &.horizontal {
+    border-right: @type;
+    padding: 0    @margin;
+    height:       100%;
+  };
+};
+.header-title:extend(h2.header, .divider, .divider.vertical) {
+  padding-top: 0;
+};
+
+/** Wiadomość */
+.message {
+  i:first-of-type {
+    padding-top:   5px;
+    padding-right: 10px;
+  };
+  @color: rgba(0, 0, 0, 0.85);
+  &.danger { background: #fff0f0; };
+  &.info   { background: #f8f8f9; };
+
+  border:   1px solid @color;
+  color:    @color;
+  padding:  5px;
+  overflow: hidden;
+};
+
+/** Grupowanie elementów listy */
+.group {
+  margin-bottom: 5px;
+  .content {
+    text-align: justify;
+    font-size: @small;
+  };
+  & > div:not(:first-child) {
+    padding-left: 16px;
+  };
+  * {
+    margin: 0;
+  };
+};
+
+/** Chowanie elementu */
+.invisible {
+  visibility: hidden;
+};
+
+/** Licznik słów */
+.letter-count:extend(.pull-right, .text-right) {
+  color:     @info;
+  font-size: @small;
+};
+
+/** Obrazek nagłówkowy */
+img.header {
+  width: 100%;
+};
+
+/** Lista kolumn i row */
+.col-fieldset {
+  div[class*='col'] {
+    margin:        0;
+    padding:       0;
+  };
+  &.hover .row:nth-child(even) {
+    background: @divider;
+  };
+};

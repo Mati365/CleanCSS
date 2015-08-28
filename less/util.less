@@ -1,0 +1,13 @@
+/** For */
+.for(@num) when(isnumber(@num)) { .for(0, @num); };
+.for(@num, @to) when(@num < @to) {
+  .-each(@num);
+  .for(@num + 1, @to);
+};
+
+/** Foreach */
+.for(@array) when(default()) { .for-each(length(@array)); };
+.for-each(@index) when(@index > 0) {
+  .-each(extract(@array, @index));
+  .for-each((@index - 1));
+};
