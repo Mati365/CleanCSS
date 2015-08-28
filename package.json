@@ -1,6 +1,6 @@
 {
   "name": "CleanCSS",
-  "version": "0.0.1",
+  "version": "1.0.1",
   "description": "CleanCSS is tiny Semantic's style LESS library",
   "main": "less/main.less",
   "directories": {
